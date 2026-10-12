@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReparaCampus | Solicitante</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-[#f8fafc] font-sans text-[#0f172a]">
+
+  <!-- Encabezado Institucional -->
+  <header class="border-b border-[#cbd5e1] bg-[#333333] text-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#FBAF18]">UNIVERSIDAD SIMÓN BOLÍVAR</p>
+        <h1 class="mt-1 text-xl font-bold tracking-tight">ReparaCampus — Portal del Solicitante</h1>
+      </div>
+      <span class="border border-[#006837] bg-[#006837] px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white">
+        SOLICITANTE
+      </span>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-6 py-8">
+    <div class="grid gap-8 lg:grid-cols-[1fr_400px]">
+
+      <!-- Formulario de Registro de Incidencia (S01) -->
+      <section class="border border-[#cbd5e1] bg-white p-6 shadow-sm">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#006837]">SPEC S01</p>
+        <h2 class="mt-1 text-2xl font-bold tracking-tight">Registrar Nueva Incidencia</h2>
+        <p class="mt-2 text-xs text-slate-600">Reporta un daño de infraestructura indicando ubicación, categoría, impacto y riesgo.</p>
+
+        <form method="post" action="/incidencias/nueva" class="mt-6 space-y-4">
+          <div class="grid gap-4 sm:grid-cols-2">
+            
+            <!-- Ubicación -->
+            <div>
+              <label class="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">Ubicación *</label>
+              <select name="ubicacion" required class="w-full border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2.5 text-sm outline-none focus:border-[#006837]">
+                <option value="">-- Seleccionar Ubicación --</option>
+                <option value="LAB-01">LAB-01</option>
+                <option value="AULA-201">AULA-201</option>
+                <option value="BIB-01">BIB-01</option>
+              </select>
+            </div>
+
+            <!-- Categoría -->
+            <div>
+              <label class="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">Categoría *</label>
+              <select name="categoria" required class="w-full border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2.5 text-sm outline-none focus:border-[#006837]">
+                <option value="">-- Seleccionar Categoría --</option>
+                <option value="ELECTRICIDAD">ELECTRICIDAD</option>
+                <option value="HIDRAULICA">HIDRAULICA</option>
+                <option value="MOBILIARIO">MOBILIARIO</option>
+                <option value="TIC">TIC</option>
+              </select>
+            </div>
+
+            <!-- Impacto -->
+            <div>
+              <label class="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">Impacto *</label>
+              <select name="impacto" required class="w-full border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2.5 text-sm outline-none focus:border-[#006837]">
+                <option value="BAJO">BAJO</option>
+                <option value="ALTO">ALTO</option>
+              </select>
+            </div>
+
+            <!-- Riesgo -->
+            <div>
+              <label class="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">¿Riesgo para personas? *</label>
+              <select name="riesgo" required class="w-full border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2.5 text-sm outline-none focus:border-[#006837]">
+                <option value="0">No (0)</option>
+                <option value="1">Sí (1)</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Descripción (20 - 500 caracteres) -->
+          <div>
+            <label class="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">Descripción del daño * (20 a 500 caracteres)</label>
+            <textarea name="descripcion" required minlength="20" maxlength="500" rows="4" class="w-full border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2.5 text-sm outline-none focus:border-[#006837]" placeholder="Describa en detalle el problema detectado..."></textarea>
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" class="w-full bg-[#006837] py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#00522b]">
+              Enviar Reporte de Incidencia
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Panel de Gestión y Validación del Solicitante (S04) -->
+      <aside class="space-y-6">
+        <div class="border border-[#cbd5e1] bg-white p-6 shadow-sm">
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#006837]">SPEC S04</p>
+          <h2 class="mt-1 text-lg font-bold">Validar / Rechazar / Reabrir</h2>
+          <p class="mt-1 text-xs text-slate-600">Acciones sobre tus reportes existentes.</p>
+
+          <!-- Formulario de Confirmación -->
+          <form method="post" action="/incidencias/validar" class="mt-4 border-t border-[#cbd5e1] pt-4">
+            <input type="hidden" name="accion" value="CONFIRMAR">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Confirmar Solución Realizada</label>
+            <div class="mt-2 flex gap-2">
+              <input type="number" name="incidencia_id" placeholder="ID Incidencia" required class="w-1/3 border border-[#cbd5e1] px-2 py-1.5 text-xs">
+              <button type="submit" class="w-2/3 bg-[#006837] px-3 py-1.5 text-xs font-bold uppercase text-white hover:bg-[#00522b]">Confirmar (Cerrar)</button>
+            </div>
+          </form>
+
+          <!-- Formulario de Rechazo -->
+          <form method="post" action="/incidencias/validar" class="mt-4 border-t border-[#cbd5e1] pt-4">
+            <input type="hidden" name="accion" value="RECHAZAR">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Rechazar Solución Insuficiente</label>
+            <input type="number" name="incidencia_id" placeholder="ID Incidencia" required class="mt-2 w-full border border-[#cbd5e1] px-2 py-1.5 text-xs">
+            <textarea name="motivo" required minlength="10" maxlength="300" rows="2" placeholder="Motivo del rechazo (10 a 300 caracteres)" class="mt-2 w-full border border-[#cbd5e1] p-2 text-xs"></textarea>
+            <button type="submit" class="mt-2 w-full bg-[#FBAF18] px-3 py-1.5 text-xs font-bold uppercase text-[#333333] hover:bg-amber-400">Rechazar Solución</button>
+          </form>
+
+          <!-- Formulario de Reapertura -->
+          <form method="post" action="/incidencias/validar" class="mt-4 border-t border-[#cbd5e1] pt-4">
+            <input type="hidden" name="accion" value="REABRIR">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Reabrir Incidencia Cerrada (&le; 48h)</label>
+            <input type="number" name="incidencia_id" placeholder="ID Incidencia" required class="mt-2 w-full border border-[#cbd5e1] px-2 py-1.5 text-xs">
+            <textarea name="motivo" required minlength="10" maxlength="300" rows="2" placeholder="Motivo de reapertura (10 a 300 caracteres)" class="mt-2 w-full border border-[#cbd5e1] p-2 text-xs"></textarea>
+            <button type="submit" class="mt-2 w-full border border-red-700 bg-red-50 px-3 py-1.5 text-xs font-bold uppercase text-red-700 hover:bg-red-100">Reabrir Incidencia</button>
+          </form>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+</body>
+</html>

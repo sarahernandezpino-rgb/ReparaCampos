@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReparaCampus | Coordinador</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-[#f8fafc] font-sans text-[#0f172a]">
+
+  <!-- Encabezado Institucional -->
+  <header class="border-b border-[#cbd5e1] bg-[#333333] text-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#FBAF18]">UNIVERSIDAD SIMÓN BOLÍVAR</p>
+        <h1 class="mt-1 text-xl font-bold tracking-tight">ReparaCampus — Tablero del Coordinador</h1>
+      </div>
+      <span class="border border-[#FBAF18] bg-[#FBAF18] px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#333333]">
+        COORDINADOR
+      </span>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-6 py-8">
+    
+    <!-- Tablero de Métricas (S05) -->
+    <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="border border-[#cbd5e1] bg-white p-5 shadow-sm">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Métrica Global</p>
+        <p class="mt-2 text-2xl font-bold text-[#006837]">% de Cierre</p>
+        <p class="mt-1 font-mono text-3xl font-bold text-slate-800">25,0 %</p>
+      </div>
+
+      <div class="border border-[#cbd5e1] bg-white p-5 shadow-sm">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Registradas</p>
+        <p class="mt-2 text-3xl font-bold text-slate-900">02</p>
+        <p class="mt-1 text-xs text-slate-500">Pendientes de Asignar</p>
+      </div>
+
+      <div class="border border-[#cbd5e1] bg-white p-5 shadow-sm">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500">En Atención</p>
+        <p class="mt-2 text-3xl font-bold text-amber-600">03</p>
+        <p class="mt-1 text-xs text-slate-500">En curso técnico</p>
+      </div>
+
+      <div class="border border-red-200 bg-red-50 p-5 shadow-sm">
+        <p class="text-xs font-bold uppercase tracking-wider text-red-700">Incidencias Críticas</p>
+        <p class="mt-2 text-3xl font-bold text-red-700">01</p>
+        <p class="mt-1 text-xs text-red-600">No cerradas actualmente</p>
+      </div>
+    </section>
+
+    <!-- Asignación de Técnico (S02) -->
+    <section class="mt-8 border border-[#cbd5e1] bg-white p-6 shadow-sm">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#006837]">SPEC S02</p>
+      <h2 class="mt-1 text-lg font-bold">Asignar Técnico a Incidencia REGISTRADA</h2>
+
+      <form method="post" action="/incidencias/asignar" class="mt-4 flex flex-wrap items-end gap-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">ID Incidencia *</label>
+          <input type="number" name="incidencia_id" required placeholder="Ej. 1" class="mt-1 border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2 text-sm outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Técnico Activo *</label>
+          <select name="tecnico_id" required class="mt-1 border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2 text-sm outline-none">
+            <option value="">-- Seleccionar Técnico --</option>
+            <option value="4">Técnico 1 (ID 4)</option>
+            <option value="5">Técnico 2 (ID 5)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="bg-[#006837] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#00522b]">
+          Asignar Incidencia
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+</body>
+</html>

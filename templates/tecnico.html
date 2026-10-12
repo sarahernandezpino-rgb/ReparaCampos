@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReparaCampus | Técnico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-[#f8fafc] font-sans text-[#0f172a]">
+
+  <!-- Encabezado Institucional -->
+  <header class="border-b border-[#cbd5e1] bg-[#333333] text-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#FBAF18]">UNIVERSIDAD SIMÓN BOLÍVAR</p>
+        <h1 class="mt-1 text-xl font-bold tracking-tight">ReparaCampus — Panel de Atención Técnica</h1>
+      </div>
+      <span class="border border-[#006837] bg-[#006837] px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white">
+        TÉCNICO
+      </span>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-6 py-8">
+    <div class="grid gap-8 lg:grid-cols-2">
+
+      <!-- Paso 1: Iniciar Atención -->
+      <section class="border border-[#cbd5e1] bg-white p-6 shadow-sm">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#006837]">SPEC S03 — PASO 1</p>
+        <h2 class="mt-1 text-lg font-bold">Iniciar Atención Operativa</h2>
+        <p class="mt-1 text-xs text-slate-600">Pasa el estado de ASIGNADA a EN ATENCION.</p>
+
+        <form method="post" action="/incidencias/atender" class="mt-4 space-y-3">
+          <input type="hidden" name="accion" value="INICIAR">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">ID de Incidencia Asignada *</label>
+            <input type="number" name="incidencia_id" required placeholder="Ej. 1" class="mt-1 w-full border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2 text-sm outline-none">
+          </div>
+          <button type="submit" class="w-full bg-[#006837] py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#00522b]">
+            Iniciar Atención
+          </button>
+        </form>
+      </section>
+
+      <!-- Paso 2: Registrar Solución -->
+      <section class="border border-[#cbd5e1] bg-white p-6 shadow-sm">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#006837]">SPEC S03 — PASO 2</p>
+        <h2 class="mt-1 text-lg font-bold">Proponer Solución Realizada</h2>
+        <p class="mt-1 text-xs text-slate-600">Pasa el estado de EN ATENCION a PENDIENTE VALIDACION.</p>
+
+        <form method="post" action="/incidencias/atender" class="mt-4 space-y-3">
+          <input type="hidden" name="accion" value="SOLUCION">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">ID de Incidencia *</label>
+            <input type="number" name="incidencia_id" required placeholder="Ej. 1" class="w-full border border-[#cbd5e1] bg-[#f8fafc] px-3 py-2 text-sm outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Texto de la Solución * (20 a 800 caracteres)</label>
+            <textarea name="texto_solucion" required minlength="20" maxlength="800" rows="3" placeholder="Detalle el trabajo de reparación realizado..." class="w-full border border-[#cbd5e1] bg-[#f8fafc] p-2 text-sm outline-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-[#FBAF18] py-2.5 text-xs font-bold uppercase tracking-wider text-[#333333] hover:bg-amber-400">
+            Registrar Solución y Enviar a Validación
+          </button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>
